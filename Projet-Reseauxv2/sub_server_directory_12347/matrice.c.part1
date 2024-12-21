@@ -1,0 +1,32 @@
+     float facteur = A[i][k] / A[k][k];
+                for (int j = k; j < dim; j++) {
+                    A[i][j] -= facteur * A[k][j];  
+                }
+                B[i] -= facteur * B[k];
+            A[i][k] = 0;
+        }
+    }
+    printf("\ntriangularisation :\n");
+    displayResult(dim, A, B);
+}
+
+void resolution(float dim, float**A, float*B, float *X) {
+    for (int i = 0; i < dim; i++) {
+        X[i] = 0;
+    }
+    for (int i = dim - 1; i >= 0; i--) {
+     
+        X[i] = (float)B[i];
+        for (int j = i + 1; j < dim; j++) {
+            X[i] -= A[i][j] * X[j];
+        }
+        X[i] /= A[i][i];  
+    }
+}
+
+int main() {
+    printf("Resolution d'un systeme x tel que A.x = b \n");
+
+    float dim = 3; 								// dimension de la matrice A
+    float**A = espace(dim);						//
+  

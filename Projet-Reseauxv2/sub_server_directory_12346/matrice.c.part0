@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+
+void displayResult(float dim, float **A, float*B);
+float**espace(float dim);
+void triangularisation(float dim, float**A, float*B);
+void resolution(float dim, float**A, float*B, float *X);
+
+float**espace(float dim) {
+    float**table = malloc(dim * sizeof(float*));
+    for (int i = 0; i < dim; i++) {
+        table[i] = malloc(dim * sizeof(int));
+    }
+    return table;
+}
+
+
+void displayResult(float dim, float**A, float*B) {
+    for (int i = 0; i < dim; i++) {
+        for (int j = 0; j < dim; j++) {
+            printf("%g ", A[i][j]);
+        }
+        printf("= %g\n", B[i]);
+    }
+}
+
+
+void triangularisation(float dim, float**A, float*B) {
+    for (int k = 0; k < dim - 1; k++) {
+        for (int i = k + 1; i < dim; i++) {
+           
